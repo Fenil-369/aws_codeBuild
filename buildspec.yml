@@ -4,7 +4,6 @@ phases:
   install:
     commands:
       - echo Entered the install phase...
-      - echo Installing dependencies...
   pre_build:
     commands:
       - echo Entered the pre_build phase...
@@ -13,9 +12,12 @@ phases:
       - echo Entered the build phase...
       - echo Build started
       - grep -Fq "single" index.html
-    finally:
-      - echo This always runs even if the install command fails
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed
+
+# THIS IS THE MISSING PART THAT FIXES YOUR ERROR
+artifacts:
+  files:
+    - '**/*'
